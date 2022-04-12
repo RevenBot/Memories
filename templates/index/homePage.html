@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    {% load static %}
+    <title></title>
+</head>
+<body>
+    <h1>Welcome to the home page</h1>
+    <p>{{ categories }}</p>
+    <p>
+        Categories
+        {% for category in categories %}
+        {{category.name}}
+         {% comment %} <img src="{{category.image}}" alt="{{category.name}}"> {% endcomment %}
+        <img src="{% static category.image %}" alt="{{category.name}}">
+        {% endfor %}
+        
+    </p >
+    <p>
+        Posts
+        {% for post in posts %}
+        {{post.name}}
+        <img src="{% static post.image %}" alt="{{post.name}}">
+        {% endfor %}
+    </p>
+</body>
+</html>
