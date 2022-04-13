@@ -5,6 +5,6 @@ from django.conf import settings
 class MyPost(models.Model):
     name=models.CharField(max_length=25)
     description=models.TextField(max_length=200)
-    image=models.ImageField(upload_to='post/img/')
+    image=models.ImageField(upload_to='post/img/')# cambiato perscorso
     owner=models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     sibling= models.ManyToManyField('self', blank=True)
