@@ -1,0 +1,24 @@
+{% extends 'index/Base.html' %}
+
+{% block title %}Post Detail{% endblock title %}
+
+{% block content %}
+
+<p> {{ object.name }} </p>
+<p> {{ object.description }} </p>
+<p><img src="{{object.image.url}}"></p>
+    {% for category in object.categories.all %}
+        <p>{{category.name}}</p>
+    {% endfor %}
+    {% for comments in object.comments.all %}
+    <p>{{comments.comment}}</p>
+    <p>{{comments.created_at.date}}</p>
+    <p>{{comments.user.firstname}}</p>
+    {% endfor %}
+<div>
+    <form action={% url 'comments:comment_add' pk=object.id %} method="post">{% csrf_token %}
+        <p><input type="text" name="comment" id=""></p>
+        <p><input type="submit" value="Add Comment"></p>
+    </form>
+</div>
+{% endblock content %}

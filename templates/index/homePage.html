@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    {% load static %}
-    <title></title>
-</head>
-<body>
-    <h1>Welcome to the home page</h1>
-    <p>{{ categories }}</p>
-    <p>
-        Categories
-        {% for category in categories %}
+{% extends 'index/Base.html' %}
+{% block title %}INDEX{% endblock title %}
+{% block content %}
+<h1>Welcome to the home page</h1>
+<p>{{ categories }}</p>
+<p>
+    Categories
+    {% for category in categories %}
         <h1>{{ category.name }}</h1>
-         
-         <img src="{{category.image.url}}" alt="{{category.name}}">            
-        {% endfor %}
         
-    </p >
-    <p>
-        Posts
-        {% for post in posts %}
+         <img src="{{category.image.url}}" alt="{{category.name}}">            
+         {% endfor %}
+         
+        </p >
+        <p>
+            Posts
+            {% for post in posts %}
         {{post.name}}
         <img src="{{ post.image.url }}" alt="{{post.name}}">
         {% endfor %}
     </p>
+    {% endblock content %}
 </body>
 </html>

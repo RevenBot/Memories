@@ -1,0 +1,11 @@
+{% extends 'index/Base.html' %}
+{% block title %}New Question {{object.id}} {% endblock title %}
+{% block content %}
+<h4>Question num: {{object.id}} </h4>
+<form method="post">{% csrf_token %}
+    <ul>
+    {{form.as_p}}
+    </ul>
+<input type="submit" value="Update" />
+</form>
+{% endblock content %}

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'category.apps.CategoryConfig',
     'post.apps.PostConfig',
+    'account.apps.AccountConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +130,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+LOGIN_REDIRECT_URL='account:index'
+
+LOGIN_URL='account:login'
+
+# LOGOUT_REDIRECT_URL = 'account:index'

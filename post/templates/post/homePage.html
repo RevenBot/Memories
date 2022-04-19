@@ -1,0 +1,13 @@
+{% extends 'index/Base.html' %}
+{% block title %}POSTS
+{% endblock title %}
+{% block content %}
+<h1>MY POSTS</h1>
+{% for post in posts %}
+<li> {{post.name}}</li>
+<p><img src="{{post.image.url}}"></p>
+<p><a href={% url 'post:post_detail' pk=post.pk %}>Read More</a></p>
+
+{% endfor %}
+
+{% endblock content %}

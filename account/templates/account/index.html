@@ -1,0 +1,8 @@
+{% extends 'index/Base.html' %}
+{% block title %}INDEX account{% endblock title %}
+{% block content %}
+<a href={% url 'account:registrationUser' %}>Register</a>
+<a href={% url 'account:login' %}>Login</a>
+<a href={% url 'account:logged_out' %}>Logout</a>
+{% comment %} <a href={% url 'account:userpage' %}>add</a> {% endcomment %}
+{% endblock content %}
