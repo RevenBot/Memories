@@ -6,6 +6,7 @@ from comments.models import Comments
 
 
 # Create your models here.
+#TODO: ADD DATE_TIME_FIELD
 class MyPost(models.Model):
     name=models.CharField(max_length=25)
     description=models.TextField(max_length=200)

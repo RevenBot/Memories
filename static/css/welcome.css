@@ -1,0 +1,21 @@
+#cover {
+  /* font-size: 1.125rem;
+  text-anchor: middle; */
+  background-image: url("../img/Wall.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat-y;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+#cover-container{
+  background-color:rgba(0, 0, 0, 0.5);
+  display: flex!important;
+}
+#footer{
+  margin-top:auto !important;
+}

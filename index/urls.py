@@ -22,10 +22,12 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index, name='index'),
+    path('',views.welcome, name='welcome'),
+    path('index/',views.index, name='index'),
     path('category/',include('category.urls')),
     path('account/',include('account.urls')),
     path('post/',include('post.urls')),
     path('comments/',include('comments.urls')),
+    path('test/',views.test, name='test'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,15 @@
+{% extends 'index/BaseTest.html' %}
+
+{% block title %}Welcome{% endblock title %}
+{% load static %}
+{% block cssPage %}
+<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+
+{% endblock cssPage %}
+
+{% block content %}
+<h1>Welcome to the Jungle</h1>
+{% endblock content %}
+{% block footer %}
+<h4>Grazie dell'atenzione</h4>
+{% endblock footer %}

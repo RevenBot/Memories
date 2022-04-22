@@ -16,7 +16,7 @@ class UserCreationForm(CreateView):
     form_class= UserCreationForm
     template_name="account/user_create.html"
     success_url=reverse_lazy("account:registrationAccount")
-#FIXME: solo con post? 
+#FIXME: solo con metodo post? 
 class AccountCreationForm(FormView):
     template_name="account/account_create.html"
     form_class= NewAccountForm

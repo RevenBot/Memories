@@ -10,3 +10,9 @@ def index(request):
     posts= MyPost.objects.all()
     context = {'categories': categories, 'posts': posts}
     return render(request, 'index/homePage.html',context)
+
+def test(request):
+    return render(request, 'index/test.html')
+
+def welcome(request):
+    return render(request, 'index/welcome.html')

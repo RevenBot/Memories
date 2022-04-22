@@ -24,8 +24,8 @@
             {% if user.is_authenticated %}
             
             Benvenut*, {{user.account.firstname}} {{user.account.surname}}
-            {% endif %}</a>
             <a class="flex-sm-fill text-sm-center nav-link" href={% url 'account:updateAccount' pk=user.account.id %}>Edit Account</a>
+            {% endif %}</a>
         </nav>
         <div class="container">
             {% block content %}

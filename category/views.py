@@ -11,3 +11,4 @@ class CategoryDetailView(generic.DetailView):
     model=MyCategory
     templateName='category/mycategory_detail.html'
     #TODO passare anche i post con quella categoria
+    #TODO create solo da admin
