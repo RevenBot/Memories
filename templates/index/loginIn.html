@@ -1,0 +1,28 @@
+{% extends 'index/BaseTest.html' %}
+
+{% block title %}TEST{% endblock title %}
+{% load static %}
+{% block cssPage %}<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+<link rel="stylesheet" href="{% static 'css/indexPage.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock cssPage %}
+
+{% block content %}
+<form class="form-signin">
+    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="floatingInput">
+      <label for="floatingInput">User name</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" autocomplete="on">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+
+
+</form>
+
+{% endblock content %}

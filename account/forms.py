@@ -12,4 +12,5 @@ class NewAccountForm(forms.Form):
     surname_form = forms.CharField(max_length=100,required=True)
     information_form = forms.CharField(max_length=100,required=True)
     
+    
  

@@ -37,3 +37,6 @@ Struttura:
     come fare 
         css globale per tutti ? no
         importare il css in cssPage
+
+TODO: Detail View di category no list view
+TODO: Detail View di Post no list view

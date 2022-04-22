@@ -25,6 +25,6 @@ urlpatterns = [
     path('registrationUser/',views.UserCreationForm.as_view(), name="registrationUser"),
     path('registrationAccount/',views.AccountCreationForm.as_view(), name="registrationAccount"),
     path('<int:pk>/edit/',views.AccountUpdateView.as_view(), name="updateAccount"),
-    path('login/',auth_views.LoginView.as_view(),name="login"),
+    path('login/',views.userLogIn.as_view(),name="login"),
     path('logout/',auth_views.LogoutView.as_view(),name="logged_out"),
 ]

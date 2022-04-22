@@ -136,4 +136,4 @@ LOGIN_REDIRECT_URL='account:index'
 
 LOGIN_URL='account:login'
 
-# LOGOUT_REDIRECT_URL = 'account:index'
+LOGOUT_REDIRECT_URL = 'account:index'

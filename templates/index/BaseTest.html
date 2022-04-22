@@ -45,21 +45,25 @@
                                     <a href={% url 'post:index' %} class="nav-link px-2 text-white">Posts</a>
                                 </li>
                             </ul>
+                            {% if user.is_authenticated %}
                             <div class="d-flex align-items-center justify-content-center text-end">
-                                {% if user.is_authenticated %}
                                 <div class="px-2 text-white">
-                                Benvenut*, {{ user.account.firstname }} {{ user.account.surname }}
+                                    Benvenut*, {{ user.account.firstname }} {{ user.account.surname }}
                                 </div>
-                                
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center text-end">
+                                <a href="{% url 'account:logged_out' %}"
+                                    class="nav-link px-2"> <button type="button" class="btn btn-warning">Logout</button></a>
                                 <a class="nav-link px-2 "
                                 href={% url 'account:updateAccount' pk=user.account.id %}> <button type="button" class="btn btn-warning">Edit</button></a>
-                                {% else %}
-                                    <a href="{% url 'account:registrationUser' %}"
+                            </div>
+                            {% else %}
+                            <div class="d-flex align-items-center justify-content-center text-end">
+                            <a href="{% url 'account:registrationUser' %}"
                                     class="nav-link px-2"> <button type="button" class="btn btn-warning">Sign-up</button></a>
                                     <a href="{% url 'account:login' %}" class="nav-link px-2 "><button type="button" class="btn btn-outline-light me-2">Login</button></a>
-                                {% endif %} 
-                               
-                              </div>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </header>
