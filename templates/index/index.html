@@ -1,73 +1,72 @@
-{% extends 'index/BaseTest.html' %}
+{% extends 'index/Base.html' %}
 
-{% block title %}TEST{% endblock title %}
+{% block title %}Index{% endblock title %}
 {% load static %}
-{% block cssPage %}<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+{% block cssPage %}<link rel="stylesheet" href="{% static 'css/general.css' %}">
 <link rel="stylesheet" href="{% static 'css/indexPage.css' %}">
 {% endblock cssPage %}
 
 {% block content %}
+{% if recentPosts.count > 0 %}
 <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    {% for post in recentPosts %}
+    {% if forloop.counter == 1 %}
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{forloop.counter0}}" class="active" aria-current="true" aria-label="Slide {{forloop.counter}}"></button>
+    {% else %}
+          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="{{forloop.counter0}}" aria-label="Slide {{forloop.counter}}"></button>
+    {% endif %}
+
+    {% endfor %}
   </div>
   <div class="carousel-inner">
+    {% for post in recentPosts %}
+    {% if forloop.counter == 1 %}
     <div class="carousel-item active">
-      <svg class="bd-placeholder-img" width="75%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
-      <div class="container">
-        <div class="carousel-caption text-start">
-          <h1>Example headline.</h1>
-          <p>Some representative placeholder content for the first slide of the carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <svg class="bd-placeholder-img" width="75%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
+      <img src="{{ post.image.url }}" class="img-thumbnail" alt="{{post.name}}">
+      <a class="stretched-link" href="{% url 'post:post_detail' pk=post.pk %}"></a>
       <div class="container">
         <div class="carousel-caption">
-          <h1>Another example headline.</h1>
-          <p>Some representative placeholder content for the second slide of the carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+          <h1>{{post.name}}</h1>
         </div>
       </div>
     </div>
+    {%else%}
     <div class="carousel-item">
-      <svg class="bg-transparent" width="75%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
-
+      <img src="{{ post.image.url }}" class="img-thumbnail" alt="{{post.name}}">
+        <a class="stretched-link" href="{% url 'post:post_detail' pk=post.pk %}"></a>
+      
       <div class="container">
-        <div class="carousel-caption text-end">
-          <h1>One more for good measure.</h1>
-          <p>Some representative placeholder content for the third slide of this carousel.</p>
-          <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+        <div class="carousel-caption">
+          <h1>{{post.name}}</h1>
         </div>
       </div>
     </div>
+    {% endif %}
+    {% endfor %}
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
+    <span class="visually-hidden">Precedente</span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
+    <span class="visually-hidden">Prossimo</span>
   </button>
 </div>
+{% endif %}
 {% comment %} categories {% endcomment %}
 <div class="container px-4 " id="custom-cards">
-  <h2 class="pb-2 border-bottom">Categories</h2>
+  <h2 class="pb-2 border-bottom">Categorie</h2>
 
   <div class="row row-cols-2 row-cols-lg-6 align-items-stretch g-4 py-2">
 
     {% for category in categories %}
     <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('unsplash-photo-1.jpg');">
+      <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{category.image.url}}');">
         <div class="h-100 pb-3 text-white text-shadow-1">
-          <h2 class="pt-5 mt-5 display-6 lh-1 fw-bold">{{category.name}}</h2>
+          <h2 class="pt-5 mt-5 display-6 lh-1 fw-bold categories">
+            <a class="stretched-link link-light" href={% url 'category:categoryDetail' pk=category.name %}>{{category.name}}</a></h2>
           
         </div>
       </div>
@@ -80,46 +79,17 @@
 
 
 {% comment %} Posts {% endcomment %}
-
-<div class="container px-4" style="color: black;">
-  <div class="row row-cols-1 row-cols-lg-2 mb-2 mt-4">
-
-    {% for post in page_posts %}
-    <div class="col">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">{{post.categories.all.0.name}} </strong>
-          <h3 class="mb-0">{{post.name}}</h3>
-          <div class="mb-1 text-muted">Nov 12</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-          
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-    
-  </div>
-  <div class="pagination">
-    <span class="step-links">
-        {% if page_posts.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_posts.previous_page_number }}">previous</a>
-        {% endif %}
-  
-        <span class="current">
-            Page {{ page_posts.number }} of {{ page_posts.paginator.num_pages }}.
-        </span>
-  
-        {% if page_posts.has_next %}
-            <a href="?page={{ page_posts.next_page_number }}">next</a>
-            <a href="?page={{ page_posts.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-  </div>
+<div class="container px-4">
+{% if page_posts.paginator.count > 0 %}
+					{% include "post/allPost.html" %}
+					{% else %}
+					<h1>No posts?</h1>
+					<p>ricerca in corso ...</p>
+					<p hidden>sto consultando i miei bro +1</p>
+					{% endif %}
 </div>
-
 {% endblock content %}
+
+{% block footer %}
+{% include "index/footer.html" %}
+{% endblock footer %}

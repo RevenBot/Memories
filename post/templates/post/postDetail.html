@@ -1,0 +1,93 @@
+{% extends 'index/Base.html' %}
+
+{% block title %}{{object.name}}{% endblock title %}
+{% load static %}
+{% block cssPage %}
+<link rel="stylesheet" href="{% static 'css/general.css' %}">
+<link rel="stylesheet" href="{% static 'css/postDetail.css' %}">
+
+{% endblock cssPage %}
+
+{% block content %}
+<div class="container">
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-4 fw-bold">{{ object.name}}</h1>
+        <div class="overflow-hidden" style="max-height: 30vh;">
+          <div class="container px-5">
+            <img src={{object.image.url}} class="img-fluid border rounded-3 shadow-lg mb-4" alt={{object.name}} width="700" height="500" loading="lazy">
+          </div>
+        </div>
+        <div class="col-lg-6 mx-auto">
+          <p class="lead mb-4">{{object.description}}</p>
+          {% if object in user.account.posts.all %}
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            <a href={% url 'post:post_edit' pk=object.id %}>
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4" >Modifica</button></a>
+              <a href={% url 'post:post_delete' pk=object.id %}>
+                <button type="button" class="btn btn-outline-secondary btn-lg px-4" >Elimina</button></a>
+          </div>
+          {% endif %}
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+            {% for category in object.categories.all %}
+            <a href={% url 'category:categoryDetail' pk=category.name %}>
+              <button type="button" class="btn btn-outline-secondary btn-lg px-4" >{{category.name}}</button></a>
+            
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    <div class="comments">
+      {% if user.is_authenticated %}
+      <div class="row">
+        <div class="col-lg-6 mx-auto">
+          <form action={% url 'comments:comment_add' pk=object.id %} method="post">{% csrf_token %}
+            <div class="form-group">
+              <label for="comment">Commento</label>
+              <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      {% else %}
+      <div class="d-flex align-items-center justify-content-center text-end">
+      <a href="{% url 'account:registrationUser' %}"
+              class="nav-link px-2"> <button type="button" class="btn btn-warning">Sign-up</button></a>
+              <a href="{% url 'account:login' %}" class="nav-link px-2 "><button type="button" class="btn btn-outline-light me-2">Login</button></a>
+      </div>
+      {% endif %}
+        <div>
+          
+          {% if object.comments.all.count >= 1 %}
+          <p>Commenti: {{object.comments.all.count}}</p>
+          <hr>
+        <div>
+          {% for comment in object.comments.all %}
+    <p>{{comment.comment}}</p>
+    <p>{{comment.created_at.date|date:"m, d, Y"}}</p>
+    <p>Scritto da: {{comment.user.firstname}}
+      
+      {% if user.account == comment.user or object in user.account.posts.all %}
+      
+      <form action="{% url 'comments:comment_delete' pk=comment.pk %}" method="post" >
+        {% csrf_token %}
+        <input type="hidden" name="postPK" value={{object.id}}>
+        <button type="submit" class="btn btn-outline-light me-2">Elimina Commento</button>
+
+      </form>
+    
+      {% endif %}
+    </p>  
+    {% endfor %}
+        </div>
+          {% else %}
+          <p>Nessun commento</p>
+          {% endif %}
+          
+          
+
+        </div>
+        
+    </div>
+</div>
+
+{% endblock content %}

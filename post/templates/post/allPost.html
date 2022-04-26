@@ -1,0 +1,40 @@
+<div class="row row-cols-1 row-cols-lg-2 mb-2 mt-4">
+      
+      {% for post in page_posts %}
+      <div class="col">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">{{post.categories.all.0.name}} </strong>
+            <h3 class="mb-0 text-white">{{post.name}}</h3>
+            <div class="mb-1 text-muted">{{post.created_at|date:"m, d, Y"}}</div>
+            <p class="card-text mb-auto text-white">{{post.description|slice:50}}...</p>
+            <a href="{% url 'post:post_detail' pk=post.pk %}">Continua a leggere</a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img card-cover" width="200" height="250" role="img" style="background-image: url('{{post.image.url}}');background-size: cover;">
+            </svg>
+            
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+    <div class="pagination row text-white">
+      <span class="step-links">
+          {% if page_posts.has_previous %}
+              <a href="?page=1">&laquo; Primo</a>
+              <a href="?page={{ page_posts.previous_page_number }}">Precedente</a>
+          {% endif %}
+    
+          <span class="current">
+              Pagina {{ page_posts.number }} di {{ page_posts.paginator.num_pages }}.
+          </span>
+    
+          {% if page_posts.has_next %}
+              <a href="?page={{ page_posts.next_page_number }}">Prossimo</a>
+              <a href="?page={{ page_posts.paginator.num_pages }}">Ultimo &raquo;</a>
+          {% endif %}
+      </span>
+    </div>
+ 

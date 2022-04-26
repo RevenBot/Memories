@@ -1,0 +1,17 @@
+html{
+  min-height: 100%!important;
+  height: 100%!important;
+}
+body{
+    /* font-size: 1.125rem;
+  text-anchor: middle; */
+  background-image: url("../img/Wall.webp");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100%!important;
+}
+#footer{
+  margin-top:auto !important;
+}

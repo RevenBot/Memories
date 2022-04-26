@@ -1,0 +1,18 @@
+main>.container {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.container>img{
+        top: 0;
+        right: 5%;
+        left: 5%;
+        width: 90%;
+      }
+@media only screen and (min-width: 768px) {
+        /* For Desktop : */
+        .container >img{
+          right: 30%;
+          left: 30%;
+          width: 40%;
+        }
+      }

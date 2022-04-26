@@ -1,0 +1,7 @@
+#cover-container{
+    background-color:rgba(0, 0, 0, 0.8);
+    display: flex!important;
+  }
+  text-muted {
+    color: #ff7777!important;
+  }

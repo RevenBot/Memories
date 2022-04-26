@@ -1,16 +1,9 @@
-#cover {
-  /* font-size: 1.125rem;
-  text-anchor: middle; */
-  background-image: url("../img/Wall.webp");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: repeat-y;
+html{
+  height: 100%!important;
 }
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+body {
+  height: 100%!important;
+  
 }
 #cover-container{
   background-color:rgba(0, 0, 0, 0.5);

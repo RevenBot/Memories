@@ -22,4 +22,5 @@ from . import views
 app_name="comments"
 urlpatterns = [
     path('<int:pk>/add/', views.commentAdd, name='comment_add'),
+    path('<int:pk>/delete/', views.commentDelete, name='comment_delete'),
 ]

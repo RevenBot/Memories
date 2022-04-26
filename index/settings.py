@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'post.apps.PostConfig',
     'account.apps.AccountConfig',
     'comments.apps.CommentsConfig',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -132,8 +134,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-LOGIN_REDIRECT_URL='account:index'
+LOGIN_REDIRECT_URL='index'
 
 LOGIN_URL='account:login'
 
-LOGOUT_REDIRECT_URL = 'account:index'
+LOGOUT_REDIRECT_URL = 'index'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

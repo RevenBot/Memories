@@ -28,6 +28,6 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('post/',include('post.urls')),
     path('comments/',include('comments.urls')),
-    path('test/',views.test, name='test'),
+    path('test/',views.testIndex, name='test'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

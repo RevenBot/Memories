@@ -1,4 +1,12 @@
-
+html{
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+#cover-container{
+  background-color:rgba(0, 0, 0, 0.8);
+}
 .form-signin {
   width: 100%;
   max-width: 330px;

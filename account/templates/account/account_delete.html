@@ -1,0 +1,24 @@
+{% extends 'index/Base.html' %}
+{% block title %}Eliminazione Utente {% endblock title %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block cssPage %}
+<link rel="stylesheet" href="{% static 'css/general.css' %}">
+<link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+{% endblock cssPage %}
+{% block content %}
+<div class="container">
+    <form method="post">{% csrf_token %}
+        <h1>Eliminazione Utente</h1>
+        <h2>{{user.username}}</h2>
+        <p>Sei sicuro?</p>
+        <ul>
+            {{form.as_p}}
+        </ul>
+        <input type="submit" class="btn btn-primary"  value="Elimina" />
+        <a href="{% url 'account:profile' pk=user.account.id %}">
+            <button type="button" class="btn btn-warning">Annulla</button>
+        </a>
+    </form>
+</div>
+{% endblock content %}
