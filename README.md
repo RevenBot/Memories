@@ -75,11 +75,7 @@ Install dependencies with python and pip already installed
 ```bash
   
   pip install –user pipenv
-  pipenv install django
-  pipenv install pillow
-  pipenv install django-crispy-forms
-  pipenv install crispy-bootstrap5
-  pipenv shell
+  pipenv install 
 ```
 
 Start the server
