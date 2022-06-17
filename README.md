@@ -48,8 +48,6 @@ di creazione e update.
 
 - Grafica non curata in caso manchino elementi.
 - Eventuali controlli di sicurezza in caso di modifiche al codice in lato client.
-- Commenti non eliminati dopo l'eliminazione del Account. 
-- ManytoMany associazioni errate o manca la parte di gestione dell'eliminazione
 
 
 

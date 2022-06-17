@@ -33,6 +33,7 @@ class PostCreateView(generic.CreateView):
         self.request.user.account.posts.add(self.object)
         return super().form_valid(form)
 @login_required
+#FIXME
 def deleteView(request,pk):
     post=MyPost.objects.get(pk=pk)
     if request.user.account.posts.filter(pk=post.id).exists():

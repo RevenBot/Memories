@@ -57,11 +57,11 @@
       {% endif %}
         <div>
           
-          {% if object.comments.all.count >= 1 %}
-          <p>Commenti: {{object.comments.all.count}}</p>
+          {% if object.comments_set.all.count >= 1 %}
+          <p>Commenti: {{ object.comments_set.all.count }}</p>
           <hr>
         <div>
-          {% for comment in object.comments.all %}
+          {% for comment in  object.comments_set.all %}
     <p>{{comment.comment}}</p>
     <p>{{comment.created_at.date|date:"m, d, Y"}}</p>
     <p>Scritto da: {{comment.user.firstname}}
@@ -70,7 +70,6 @@
       
       <form action="{% url 'comments:comment_delete' pk=comment.pk %}" method="post" >
         {% csrf_token %}
-        <input type="hidden" name="postPK" value={{object.id}}>
         <button type="submit" class="btn btn-outline-light me-2">Elimina Commento</button>
 
       </form>

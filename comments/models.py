@@ -11,6 +11,8 @@ class Comments(models.Model):
     user = models.ForeignKey("account.Account", on_delete=models.CASCADE,blank=True,null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    post=models.ForeignKey("post.MyPost", on_delete=models.CASCADE,blank=True,null=True)
+    
     
     
     def __str__(self):

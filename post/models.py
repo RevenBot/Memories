@@ -12,7 +12,6 @@ class MyPost(models.Model):
     description=models.TextField(max_length=200)
     image=models.ImageField(upload_to=user_directory_path,default='404Image.webp')
     categories=models.ManyToManyField(MyCategory, blank=False,max_length=3)
-    comments=models.ManyToManyField(Comments, blank=True)
     created_at = models.DateTimeField(null=True, blank=True,auto_now_add=True)
     updated_at = models.DateTimeField(null=True, blank=True,auto_now=True)
     
